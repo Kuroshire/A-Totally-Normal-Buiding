@@ -1,0 +1,4 @@
+repository "The Cabin in the Woods@Kuroshire@cloud"
+  path "/"
+    br "/main"
+    co "/main"
