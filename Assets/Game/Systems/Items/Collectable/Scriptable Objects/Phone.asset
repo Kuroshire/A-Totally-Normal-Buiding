@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e58308566cd9b468254ad215a31019, type: 3}
+  m_Name: Phone
+  m_EditorClassIdentifier: 
+  name: Phone
+  description: always at 100% charge, you must be pretty popular huh...
+  sprite: {fileID: 21300000, guid: 575145875975dd1488cec29b89481c17, type: 3}
