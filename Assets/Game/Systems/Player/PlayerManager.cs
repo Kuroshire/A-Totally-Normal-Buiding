@@ -21,4 +21,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] Player player;
 
     public static PlayerInventory PlayerInventory => Instance.player.inventory;
+
+    public static Player Player => Instance.player;
 }
