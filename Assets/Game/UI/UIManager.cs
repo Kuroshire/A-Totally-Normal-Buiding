@@ -19,10 +19,13 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    public ChatBox chatBox;
-    public FadeToBlackImage fadeToBlack;
-    public InventoryUI inventoryUI;
-    public NoteDisplayer noteDipslayer;
-    [SerializeField] SubtitlesHandler subtitles;
-    public static SubtitlesHandler Subtitles => Instance.subtitles;
+    [SerializeField] PlayerUI playerUI;
+
+    public static SubtitlesHandler Subtitles => Instance.playerUI.Subtitles;
+    public static NoteDisplayer NoteDisplayer => Instance.playerUI.NoteDisplayer;
+
+    void Start()
+    {
+        playerUI.gameObject.SetActive(true);
+    }
 }

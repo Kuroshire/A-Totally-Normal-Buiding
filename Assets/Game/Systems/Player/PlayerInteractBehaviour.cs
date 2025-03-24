@@ -5,6 +5,8 @@ public class PlayerInteractBehaviour: MonoBehaviour {
     public float interactionRange = 3f;
     private InteractableItem currentInteractable = null;
 
+    public InteractableItem CurrentInteractable => currentInteractable;
+
     void FixedUpdate()
     {
         HandleInteractionDetection();
@@ -16,8 +18,7 @@ public class PlayerInteractBehaviour: MonoBehaviour {
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactionRange))
         {
-            InteractableItem interactable = hit.collider.GetComponent<InteractableItem>();
-            if (interactable != null) {
+            if (hit.collider.TryGetComponent<InteractableItem>(out var interactable)) {
                 SwitchCurrentInteractable(interactable);
             }
             else {

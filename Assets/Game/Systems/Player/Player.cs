@@ -6,5 +6,6 @@ public class Player: MonoBehaviour
     public PlayerMovements movements;
 
     public PlayerInventory inventory;
+    public PlayerInteractBehaviour interactBehaviour;
 
 }

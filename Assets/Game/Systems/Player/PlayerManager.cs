@@ -23,4 +23,6 @@ public class PlayerManager : MonoBehaviour
     public static PlayerInventory PlayerInventory => Instance.player.inventory;
 
     public static Player Player => Instance.player;
+
+    public static InteractableItem PlayerCurrentInteractableSelection => Instance.player.interactBehaviour.CurrentInteractable;
 }
