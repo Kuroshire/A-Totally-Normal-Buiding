@@ -19,13 +19,24 @@ public class PlayerInventory : MonoBehaviour
     public int CurrentItemIndex => currentItemIndex;
 
     public event Action OnInventoryChange;
+    public event Action OnCurrentItemChange;
 
     void Awake()
     {
         items = new Item[size];
     }
 
-    private int CountItemsInInventory() {
+    public Item FindItemByName(string itemName) {
+        for(int i = 0; i < items.Length; i++) {
+            if(items[i].name == itemName) {
+                return items[i];
+            }
+        }
+
+        return null;
+    }
+
+    public int CountItemsInInventory() {
         int nbItems = 0;
         items.ForEach((item) => {
             if(item != null) {
@@ -104,6 +115,7 @@ public class PlayerInventory : MonoBehaviour
                 Debug.Log("switching to: " + CurrentItem.Name);
                 currentItemIndex = itemIndexStart;
                 Debug.Log("-------------");
+                OnCurrentItemChange?.Invoke();
                 return;
             }
             itemIndexStart = (itemIndexStart + 1) % size;
@@ -121,6 +133,7 @@ public class PlayerInventory : MonoBehaviour
                 Debug.Log("switching to: " + CurrentItem.Name);
                 currentItemIndex = itemIndexStart;
                 Debug.Log("-------------");
+                OnCurrentItemChange?.Invoke();
                 return;
             }
             itemIndexStart = (itemIndexStart - 1) % size;
@@ -152,7 +165,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void OnPreviousItem(InputAction.CallbackContext context) {
         if(context.started) {
-            GetNextItem();
+            GetPreviousItem();
         }
     }
 
