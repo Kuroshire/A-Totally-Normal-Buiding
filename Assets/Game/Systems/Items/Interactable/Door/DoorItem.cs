@@ -7,40 +7,67 @@ public class DoorItem : InteractableItem
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private bool isOpen = false;
     [SerializeField] private bool isLocked = false;
+    public string doorName;
+
     private bool canInteract = true;
 
     public bool IsOpen => isOpen;
     public bool IsLocked => isLocked;
 
-    private void Open()
+    #region Door Behaviour
+    private void OpenBehaviour()
     {
-        if (!isLocked)
-        {
-            isOpen = true;
-            Debug.Log("Door opened");
-            doorAnimator.SetBool("isOpen", true);
-        }
-        else
-        {
-            UIManager.Subtitles.CallSubtitles("Door is locked... There must be a key somewhere.");
-            doorAnimator.SetTrigger("isLocked");
-        }
+        isOpen = true;
+        Debug.Log("Door opened");
+        doorAnimator.SetBool("isOpen", true);
     }
 
-    private void Close()
+    private void CloseBehaviour()
     {
         isOpen = false;
         Debug.Log("Door closed");
         doorAnimator.SetBool("isOpen", false);
     }
 
+    private void TryOpenWhenLockedBehaviour() {
+        UIManager.Subtitles.CallSubtitles("Door is locked... There must be a key somewhere.");
+        doorAnimator.SetTrigger("isLocked");
+    }
+
+    private void UnlockBehaviour() {
+        UIManager.Subtitles.CallSubtitles("Door unlocked...");
+        //play sound
+    }
+
+    private void LockBehaviour() {
+        UIManager.Subtitles.CallSubtitles("You locked the door...");
+        //play sound
+    }
+
+    #endregion
+
+
+    public void SwitchLockWithKey() {
+        isLocked = !isLocked;
+
+        if(isLocked) {
+            LockBehaviour();
+        } else {
+            UnlockBehaviour();
+        }
+    }
+
     public override void Interact()
     {
         canInteract = false;
         if(isOpen) {
-            Close();
+            CloseBehaviour();
         } else {
-            Open();
+            if (!isLocked) {
+                OpenBehaviour();
+            } else {
+                TryOpenWhenLockedBehaviour();
+            }
         }
         Invoke(nameof(ReactivateInteraction), 1f);
     }

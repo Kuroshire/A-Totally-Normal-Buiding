@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c4b1600539abe4f92becccbba33766, type: 3}
   m_Name: Key
   m_EditorClassIdentifier: 
-  name: Door Key
+  name: Main Entrance Key
   description: This must open something...
   sprite: {fileID: 21300000, guid: 99c9af521ee41534abe718cd0d279ed1, type: 3}
-  doorToOpen: Idk dude
+  doorToOpenName: Main Entrance

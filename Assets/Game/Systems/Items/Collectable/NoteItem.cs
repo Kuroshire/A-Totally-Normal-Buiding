@@ -14,9 +14,9 @@ public class NoteItem : Item
         Debug.Log("La note dit: " + content);
         isShowed = !isShowed;
         if(isShowed) {
-            UIManager.Instance.noteDipslayer.ShowNote(this);
+            UIManager.NoteDisplayer.ShowNote(this);
         } else {
-            UIManager.Instance.noteDipslayer.HideNote();
+            UIManager.NoteDisplayer.HideNote();
         }
     }
 }
